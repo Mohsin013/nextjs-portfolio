@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ViewTransition } from "react";
 import LabsPage from "@/components/labs/LabsPage";
 
 export const metadata: Metadata = {
@@ -27,5 +28,21 @@ export const metadata: Metadata = {
 };
 
 export default function Labs() {
-  return <LabsPage />;
+  return (
+    <ViewTransition
+      enter={{
+        "nav-forward": "nav-forward",
+        "nav-back": "nav-back",
+        default: "none",
+      }}
+      exit={{
+        "nav-forward": "nav-forward",
+        "nav-back": "nav-back",
+        default: "none",
+      }}
+      default="none"
+    >
+      <LabsPage />
+    </ViewTransition>
+  );
 }

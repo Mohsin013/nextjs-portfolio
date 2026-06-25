@@ -45,6 +45,7 @@ export default function StatusBar() {
       <div className="flex items-center gap-6">
         <span>NEXT.JS 16 + GSAP</span>
         <span>{time}</span>
+        <span className="text-white/20">⌘K</span>
         <a
           href="#contact"
           onClick={(e) => { e.preventDefault(); document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" }); }}

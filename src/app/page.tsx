@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ViewTransition } from "react";
 import Hero from "@/components/Hero";
 import Capabilities from "@/components/Capabilities";
 import Experience from "@/components/Experience";
@@ -29,15 +30,29 @@ export default function Home() {
       <GrainOverlay />
       <Navigation />
       <BackgroundAmbience />
-      <main className="flex flex-col gap-0">
-        <Hero />
-        <Capabilities />
-        <Experience />
-        <CaseStudy />
-        <SignatureProjects />
-        <Philosophy />
-        <Contact />
-      </main>
+      <ViewTransition
+        enter={{
+          "nav-forward": "nav-forward",
+          "nav-back": "nav-back",
+          default: "none",
+        }}
+        exit={{
+          "nav-forward": "nav-forward",
+          "nav-back": "nav-back",
+          default: "none",
+        }}
+        default="none"
+      >
+        <main className="flex flex-col gap-0">
+          <Hero />
+          <Capabilities />
+          <Experience />
+          <CaseStudy />
+          <SignatureProjects />
+          <Philosophy />
+          <Contact />
+        </main>
+      </ViewTransition>
       <StatusBar />
       <PaletteSwitcher />
     </BootWrapper>

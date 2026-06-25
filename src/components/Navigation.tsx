@@ -63,6 +63,7 @@ export default function Navigation() {
       <nav
         ref={navRef}
         className="fixed top-0 left-0 right-0 z-[100] hidden lg:block"
+        style={{ viewTransitionName: "site-nav" }}
       >
         <div className="glass-heavy mx-auto mt-4 max-w-4xl rounded-full px-8 py-3">
           <div className="flex items-center justify-between">
@@ -91,6 +92,7 @@ export default function Navigation() {
               ))}
               <Link
                 href="/blog"
+                transitionTypes={["nav-forward"]}
                 className="nav-item relative px-3 py-1.5 text-[10px] font-mono tracking-widest transition-all duration-300 rounded-full text-white/40 hover:text-white/70"
                 data-cursor-label="Articles"
               >
@@ -98,6 +100,7 @@ export default function Navigation() {
               </Link>
               <Link
                 href="/labs"
+                transitionTypes={["nav-forward"]}
                 className="nav-item relative px-3 py-1.5 text-[10px] font-mono tracking-widest transition-all duration-300 rounded-full text-accent-blue hover:bg-accent-blue/10"
                 data-cursor-label="Experiments"
               >
@@ -156,6 +159,7 @@ export default function Navigation() {
           <div className="flex flex-col items-center gap-4 mt-4 border-t border-white/10 pt-6">
             <Link
               href="/blog"
+              transitionTypes={["nav-forward"]}
               className="text-lg sm:text-xl font-mono tracking-widest text-white/50 hover:text-white transition-all duration-300"
               onClick={() => setMenuOpen(false)}
             >
@@ -164,6 +168,7 @@ export default function Navigation() {
             </Link>
             <Link
               href="/labs"
+              transitionTypes={["nav-forward"]}
               className="text-lg sm:text-xl font-mono tracking-widest text-white/50 hover:text-white transition-all duration-300"
               onClick={() => setMenuOpen(false)}
             >

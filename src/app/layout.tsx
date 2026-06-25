@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import CommandPalette from "@/components/CommandPalette";
+import EasterEggs from "@/components/EasterEggs";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -142,6 +144,8 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen bg-background text-foreground font-sans">
+        <CommandPalette />
+        <EasterEggs />
         {children}
       </body>
     </html>

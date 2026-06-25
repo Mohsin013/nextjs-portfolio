@@ -140,7 +140,7 @@ export default function BlogPage() {
         <nav className="fixed top-0 left-0 right-0 z-[100]">
           <div className="glass-heavy mx-5 sm:mx-auto mt-4 max-w-4xl rounded-full px-5 sm:px-8 py-3">
             <div className="flex items-center justify-between">
-              <Link href="/" className="text-sm font-mono font-bold text-white tracking-wider">
+              <Link href="/" transitionTypes={["nav-back"]} className="text-sm font-mono font-bold text-white tracking-wider">
                 MI<span className="text-accent-blue">.</span>
               </Link>
               <button
@@ -245,15 +245,15 @@ export default function BlogPage() {
       <nav className="fixed top-0 left-0 right-0 z-[100]">
         <div className="glass-heavy mx-5 sm:mx-auto mt-4 max-w-4xl rounded-full px-5 sm:px-8 py-3">
           <div className="flex items-center justify-between">
-            <Link href="/" className="text-sm font-mono font-bold text-white tracking-wider">
+            <Link href="/" transitionTypes={["nav-back"]} className="text-sm font-mono font-bold text-white tracking-wider">
               MI<span className="text-accent-blue">.</span>
             </Link>
             <div className="flex items-center gap-2 sm:gap-4">
-              <Link href="/" className="text-[10px] sm:text-xs font-mono text-white/40 hover:text-white/70 transition-colors tracking-widest">
+              <Link href="/" transitionTypes={["nav-back"]} className="text-[10px] sm:text-xs font-mono text-white/40 hover:text-white/70 transition-colors tracking-widest">
                 PORTFOLIO
               </Link>
               <span className="text-white/20">|</span>
-              <Link href="/labs" className="text-[10px] sm:text-xs font-mono text-white/40 hover:text-white/70 transition-colors tracking-widest">
+              <Link href="/labs" transitionTypes={["nav-forward"]} className="text-[10px] sm:text-xs font-mono text-white/40 hover:text-white/70 transition-colors tracking-widest">
                 LABS
               </Link>
               <span className="text-white/20">|</span>
@@ -268,7 +268,7 @@ export default function BlogPage() {
       <div className="max-w-5xl mx-auto px-5 sm:px-8 md:px-16 lg:px-24 pt-20 sm:pt-24 pb-20">
         {/* Header */}
         <div className="mb-10 sm:mb-16">
-          <Link href="/" className="text-xs font-mono text-white/30 hover:text-accent-blue transition-colors mb-4 inline-block">
+          <Link href="/" transitionTypes={["nav-back"]} className="text-xs font-mono text-white/30 hover:text-accent-blue transition-colors mb-4 inline-block">
             ← BACK TO PORTFOLIO
           </Link>
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-semibold tracking-tight mb-3 sm:mb-4">

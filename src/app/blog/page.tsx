@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ViewTransition } from "react";
 import BlogPage from "@/components/blog/BlogPage";
 
 export const metadata: Metadata = {
@@ -24,5 +25,21 @@ export const metadata: Metadata = {
 };
 
 export default function Blog() {
-  return <BlogPage />;
+  return (
+    <ViewTransition
+      enter={{
+        "nav-forward": "nav-forward",
+        "nav-back": "nav-back",
+        default: "none",
+      }}
+      exit={{
+        "nav-forward": "nav-forward",
+        "nav-back": "nav-back",
+        default: "none",
+      }}
+      default="none"
+    >
+      <BlogPage />
+    </ViewTransition>
+  );
 }

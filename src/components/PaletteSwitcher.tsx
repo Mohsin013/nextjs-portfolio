@@ -12,10 +12,17 @@ const palettes = [
 export default function PaletteSwitcher() {
   const [open, setOpen] = useState(false);
   const [activePalette, setActivePalette] = useState("default");
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
 
   const switchPalette = (id: string) => {
     setActivePalette(id);
     document.documentElement.setAttribute("data-palette", id === "default" ? "" : id);
+  };
+
+  const toggleTheme = () => {
+    const next = theme === "dark" ? "light" : "dark";
+    setTheme(next);
+    document.documentElement.setAttribute("data-theme", next);
   };
 
   return (
@@ -37,6 +44,29 @@ export default function PaletteSwitcher() {
 
       {open && (
         <div className="absolute bottom-12 sm:bottom-14 right-0 glass rounded-xl p-2 sm:p-3 space-y-1.5 sm:space-y-2 min-w-[130px] sm:min-w-[140px]">
+          {/* Theme toggle */}
+          <button
+            onClick={toggleTheme}
+            className="w-full flex items-center gap-2 sm:gap-3 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg transition-all text-[10px] sm:text-xs font-mono text-white/50 hover:text-white/80 hover:bg-white/5"
+          >
+            <div className="w-7 sm:w-8 flex justify-center">
+              {theme === "dark" ? (
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="sm:w-4 sm:h-4">
+                  <circle cx="12" cy="12" r="5" />
+                  <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+                </svg>
+              ) : (
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="sm:w-4 sm:h-4">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                </svg>
+              )}
+            </div>
+            {theme === "dark" ? "Light" : "Dark"}
+          </button>
+
+          <div className="h-[1px] bg-white/10 mx-1" />
+
+          {/* Palette options */}
           {palettes.map((p) => (
             <button
               key={p.id}
