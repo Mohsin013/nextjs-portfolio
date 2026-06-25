@@ -90,6 +90,13 @@ export default function Navigation() {
                 </button>
               ))}
               <Link
+                href="/blog"
+                className="nav-item relative px-3 py-1.5 text-[10px] font-mono tracking-widest transition-all duration-300 rounded-full text-white/40 hover:text-white/70"
+                data-cursor-label="Articles"
+              >
+                BLOG
+              </Link>
+              <Link
                 href="/labs"
                 className="nav-item relative px-3 py-1.5 text-[10px] font-mono tracking-widest transition-all duration-300 rounded-full text-accent-blue hover:bg-accent-blue/10"
                 data-cursor-label="Experiments"
@@ -145,15 +152,25 @@ export default function Navigation() {
             </button>
           ))}
 
-          {/* Labs link in mobile menu */}
-          <Link
-            href="/labs"
-            className="text-xl sm:text-2xl font-mono tracking-widest text-accent-blue hover:text-white transition-all duration-300 mt-4 border-t border-white/10 pt-6"
-            onClick={() => setMenuOpen(false)}
-          >
-            <span className="text-xs sm:text-sm mr-3">◎</span>
-            LABS
-          </Link>
+          {/* Extra pages in mobile menu */}
+          <div className="flex flex-col items-center gap-4 mt-4 border-t border-white/10 pt-6">
+            <Link
+              href="/blog"
+              className="text-lg sm:text-xl font-mono tracking-widest text-white/50 hover:text-white transition-all duration-300"
+              onClick={() => setMenuOpen(false)}
+            >
+              <span className="text-accent-blue text-xs sm:text-sm mr-3">✦</span>
+              BLOG
+            </Link>
+            <Link
+              href="/labs"
+              className="text-lg sm:text-xl font-mono tracking-widest text-white/50 hover:text-white transition-all duration-300"
+              onClick={() => setMenuOpen(false)}
+            >
+              <span className="text-accent-blue text-xs sm:text-sm mr-3">◎</span>
+              LABS
+            </Link>
+          </div>
 
           {/* Mobile menu footer with active section */}
           <div className="absolute bottom-8 left-0 right-0 text-center">
