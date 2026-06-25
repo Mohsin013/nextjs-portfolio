@@ -49,7 +49,7 @@ const timeline = [
   {
     role: "Software Development Engineer",
     company: "Masai School",
-    period: "Dec 2023 – Aug 2025",
+    period: "Nov 2022 – Aug 2025",
     location: "Bengaluru, India",
     current: false,
     desc: "Built AI systems, scalable learning infrastructure, real-time proctoring, and automation platforms serving 50,000+ concurrent users.",
@@ -59,34 +59,8 @@ const timeline = [
       "AI proctoring with WebRTC, OCR, plagiarism detection (1,000+ concurrent)",
       "AI recruitment system with 12+ specialized agents",
       "GPT-4 counselling platform — 77% cost reduction via RAG pipelines",
+      "Led AI Labs team, delivered Blended Learning and InterviewStory AI projects. Worked across full-stack, Python, and AI engineering.",
     ],
-  },
-  {
-    role: "Curriculum Engineer",
-    company: "Masai School",
-    period: "Jul 2023 – Dec 2023",
-    location: "Bengaluru, India",
-    current: false,
-    desc: "Led AI Labs team, delivered Blended Learning and InterviewStory AI projects. Worked across full-stack, Python, and AI engineering.",
-    highlights: [],
-  },
-  {
-    role: "Pedagogy Instructor",
-    company: "Masai School",
-    period: "Jan 2023 – Jun 2023",
-    location: "Bengaluru, India · Remote",
-    current: false,
-    desc: "Led Generative AI course teaching prompt engineering and OpenAI integration to ~1,000 students. Ensured quality of DSA, React.js, and JavaScript courses.",
-    highlights: [],
-  },
-  {
-    role: "Instructional Associate",
-    company: "Masai School",
-    period: "Nov 2022 – Jan 2023",
-    location: "Remote",
-    current: false,
-    desc: "Tutored 1,000+ students in DSA, JavaScript, and React.js. Assisted with placements, GitHub reviews, and MERN stack portfolio projects.",
-    highlights: [],
   },
 ];
 
@@ -192,8 +166,12 @@ export default function Experience() {
                       <span className="text-white/20 hidden sm:inline">•</span>
                       <span className="hidden sm:inline">{item.period}</span>
                       <span className="text-white/20 hidden md:inline">•</span>
-                      <span className="text-white/30 hidden md:inline">{item.location}</span>
-                      <span className="sm:hidden text-white/30 text-[10px] w-full">{item.period} · {item.location}</span>
+                      <span className="text-white/30 hidden md:inline">
+                        {item.location}
+                      </span>
+                      <span className="sm:hidden text-white/30 text-[10px] w-full">
+                        {item.period} · {item.location}
+                      </span>
                     </div>
                     <p className="text-xs sm:text-sm text-white/50 leading-relaxed mb-3 sm:mb-4">
                       {item.desc}
@@ -205,7 +183,9 @@ export default function Experience() {
                             key={hi}
                             className="flex items-start gap-2 text-[10px] sm:text-xs text-white/40 font-mono"
                           >
-                            <span className="text-accent-blue mt-0.5 flex-shrink-0">›</span>
+                            <span className="text-accent-blue mt-0.5 flex-shrink-0">
+                              ›
+                            </span>
                             <span>{h}</span>
                           </li>
                         ))}
@@ -236,7 +216,9 @@ export default function Experience() {
                   <h4 className="text-sm sm:text-lg font-medium text-white mb-1 sm:mb-2">
                     {item.title}
                   </h4>
-                  <p className="text-[10px] sm:text-sm text-white/40 font-mono leading-relaxed">{item.desc}</p>
+                  <p className="text-[10px] sm:text-sm text-white/40 font-mono leading-relaxed">
+                    {item.desc}
+                  </p>
                 </div>
               </ScrollReveal>
             ))}
@@ -264,14 +246,19 @@ export default function Experience() {
                 </div>
                 <div className="p-4 sm:p-6 border-t border-white/5">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="text-[10px] font-mono text-yellow-400/80 tracking-widest glass px-2 py-0.5 rounded">2025</span>
-                    <span className="text-[10px] font-mono text-white/30">MASAI SCHOOL</span>
+                    <span className="text-[10px] font-mono text-yellow-400/80 tracking-widest glass px-2 py-0.5 rounded">
+                      2025
+                    </span>
+                    <span className="text-[10px] font-mono text-white/30">
+                      MASAI SCHOOL
+                    </span>
                   </div>
                   <h4 className="text-base sm:text-lg font-medium text-yellow-400 mb-1 sm:mb-2">
                     Exceptional Achiever Award
                   </h4>
                   <p className="text-xs sm:text-sm text-white/50 font-mono leading-relaxed">
-                    Outstanding contributions and technical leadership in AI platform development.
+                    Outstanding contributions and technical leadership in AI
+                    platform development.
                   </p>
                 </div>
               </div>
@@ -289,14 +276,19 @@ export default function Experience() {
                 </div>
                 <div className="p-4 sm:p-6 border-t border-white/5">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="text-[10px] font-mono text-yellow-400/80 tracking-widest glass px-2 py-0.5 rounded">2024</span>
-                    <span className="text-[10px] font-mono text-white/30">MASAI SCHOOL</span>
+                    <span className="text-[10px] font-mono text-yellow-400/80 tracking-widest glass px-2 py-0.5 rounded">
+                      2024
+                    </span>
+                    <span className="text-[10px] font-mono text-white/30">
+                      MASAI SCHOOL
+                    </span>
                   </div>
                   <h4 className="text-base sm:text-lg font-medium text-yellow-400 mb-1 sm:mb-2">
                     Outstanding Performer Award
                   </h4>
                   <p className="text-xs sm:text-sm text-white/50 font-mono leading-relaxed">
-                    Recognized for exceptional performance in building scalable systems and driving engineering excellence.
+                    Recognized for exceptional performance in building scalable
+                    systems and driving engineering excellence.
                   </p>
                 </div>
               </div>
