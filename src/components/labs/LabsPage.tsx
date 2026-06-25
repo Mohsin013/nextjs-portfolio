@@ -15,10 +15,15 @@ import ColorPaletteGenerator from "./tools/ColorPaletteGenerator";
 import ReadingTimeEstimator from "./tools/ReadingTimeEstimator";
 import MarkdownPreview from "./tools/MarkdownPreview";
 import LoremGenerator from "./tools/LoremGenerator";
+import UnitConverter from "./tools/UnitConverter";
+import EpochConverter from "./tools/EpochConverter";
 import ParticleCursor from "./creative/ParticleCursor";
 import WaveBlob from "./creative/WaveBlob";
 import TypographyAnimator from "./creative/TypographyAnimator";
 import NoiseGenerator from "./creative/NoiseGenerator";
+import GravityBalls from "./creative/GravityBalls";
+import MatrixRain from "./creative/MatrixRain";
+import StarField from "./creative/StarField";
 import TypingTest from "./games/TypingTest";
 import ReactionTime from "./games/ReactionTime";
 import MemoryGame from "./games/MemoryGame";
@@ -27,16 +32,28 @@ import Snake from "./games/Snake";
 import TwentyFortyEight from "./games/TwentyFortyEight";
 import WordScramble from "./games/WordScramble";
 import RockPaperScissors from "./games/RockPaperScissors";
+import FlappyDev from "./games/FlappyDev";
+import AimTrainer from "./games/AimTrainer";
+import NumberGuess from "./games/NumberGuess";
 import SortingVisualizer from "./visualizations/SortingVisualizer";
 import PathfindingVisualizer from "./visualizations/PathfindingVisualizer";
 import GameOfLife from "./visualizations/GameOfLife";
+import JwtDecoder from "./tools/JwtDecoder";
+import CronBuilder from "./tools/CronBuilder";
+import HttpStatusCodes from "./tools/HttpStatusCodes";
+import SqlFormatter from "./tools/SqlFormatter";
+import RegexGolf from "./challenges/RegexGolf";
+import BinaryDrill from "./challenges/BinaryDrill";
+import BigOQuiz from "./challenges/BigOQuiz";
+import CssBattle from "./challenges/CssBattle";
 
-type Category = "tools" | "creative" | "games" | "visualizations";
+type Category = "tools" | "creative" | "games" | "visualizations" | "challenges";
 
 const categories: { id: Category; label: string; icon: string; desc: string }[] = [
-  { id: "tools", label: "Dev Tools", icon: "⚡", desc: "CSS generators, formatters, and utilities" },
+  { id: "tools", label: "Dev Tools", icon: "⚡", desc: "CSS generators, formatters, data tools, and utilities" },
   { id: "creative", label: "Experiments", icon: "◎", desc: "Interactive visual experiments" },
   { id: "games", label: "Games", icon: "△", desc: "Mini games to test your skills" },
+  { id: "challenges", label: "Challenges", icon: "⬡", desc: "Timed coding puzzles and knowledge tests" },
   { id: "visualizations", label: "Visualizations", icon: "◈", desc: "Algorithm & data visualizations" },
 ];
 
@@ -51,25 +68,43 @@ const items: Record<Category, { id: string; title: string; desc: string }[]> = {
     { id: "json", title: "JSON Formatter", desc: "Paste ugly JSON, get it clean" },
     { id: "base64", title: "Base64 Converter", desc: "Text ↔ Base64 encoding" },
     { id: "regex", title: "Regex Tester", desc: "Live pattern matching with highlights" },
+    { id: "unit-converter", title: "CSS Unit Converter", desc: "px↔rem, deg↔rad, ms↔s, and more" },
+    { id: "epoch", title: "Epoch Converter", desc: "Unix timestamp ↔ human date with live clock" },
     { id: "reading-time", title: "Reading Time", desc: "Estimate reading & speaking time" },
     { id: "markdown", title: "Markdown Preview", desc: "Live markdown → rich text renderer" },
     { id: "lorem", title: "Lorem Generator", desc: "Generate placeholder text on demand" },
+    { id: "jwt", title: "JWT Decoder", desc: "Decode header, payload, and check expiry" },
+    { id: "cron", title: "Cron Builder", desc: "Build cron expressions with human-readable output" },
+    { id: "http-codes", title: "HTTP Status Codes", desc: "Interactive searchable reference" },
+    { id: "sql", title: "SQL Formatter", desc: "Format messy SQL queries" },
   ],
   creative: [
     { id: "particles", title: "Particle Playground", desc: "Particles trail your cursor with physics" },
     { id: "wave", title: "Interactive Wave Blob", desc: "Morphing SVG you push with your cursor" },
+    { id: "gravity", title: "Physics Sandbox", desc: "Drop balls that collide, bounce, and stack" },
+    { id: "matrix", title: "Matrix Rain", desc: "Digital rain with katakana characters" },
+    { id: "starfield", title: "Warp Star Field", desc: "Fly through space at warp speed" },
     { id: "typography", title: "Typography Animator", desc: "Type anything, watch it animate" },
     { id: "noise", title: "Noise Texture Generator", desc: "Perlin noise with color + scale controls" },
   ],
   games: [
     { id: "typing", title: "Typing Speed Test", desc: "WPM + accuracy with timer" },
     { id: "reaction", title: "Reaction Time", desc: "Click when color changes — test reflexes" },
+    { id: "flappy", title: "Flappy Dev", desc: "Flappy Bird with a dev twist" },
+    { id: "aim", title: "Aim Trainer", desc: "30-second precision clicking challenge" },
     { id: "memory", title: "Memory Card Flip", desc: "Classic pairs game, dev-themed" },
     { id: "color-guess", title: "Color Guessing", desc: "Match hex codes to swatches" },
     { id: "snake", title: "Snake", desc: "Classic snake with high-score tracker" },
     { id: "2048", title: "2048", desc: "Tile-sliding number puzzle" },
+    { id: "number-guess", title: "Number Guessing", desc: "Guess the number 1-100 with hints" },
     { id: "word-scramble", title: "Word Scramble", desc: "Unscramble dev terminology" },
     { id: "rps", title: "Rock Paper Scissors", desc: "VS AI with win-streak tracker" },
+  ],
+  challenges: [
+    { id: "regex-golf", title: "Regex Golf", desc: "Write shortest regex to match/reject strings" },
+    { id: "binary-drill", title: "Binary/Hex Drill", desc: "60-second number conversion speed test" },
+    { id: "big-o", title: "Big-O Quiz", desc: "Identify time complexity of code snippets" },
+    { id: "css-battle", title: "CSS Battle", desc: "Replicate shapes with pure CSS" },
   ],
   visualizations: [
     { id: "sorting", title: "Sorting Visualizer", desc: "Watch bubble, selection, insertion, quick sort" },
@@ -88,21 +123,37 @@ const componentMap: Record<string, React.ComponentType> = {
   json: JsonFormatter,
   base64: Base64Converter,
   regex: RegexTester,
+  "unit-converter": UnitConverter,
+  epoch: EpochConverter,
   "reading-time": ReadingTimeEstimator,
   markdown: MarkdownPreview,
   lorem: LoremGenerator,
   particles: ParticleCursor,
   wave: WaveBlob,
+  gravity: GravityBalls,
+  matrix: MatrixRain,
+  starfield: StarField,
   typography: TypographyAnimator,
   noise: NoiseGenerator,
   typing: TypingTest,
   reaction: ReactionTime,
+  flappy: FlappyDev,
+  aim: AimTrainer,
   memory: MemoryGame,
   "color-guess": ColorGuessing,
   snake: Snake,
   "2048": TwentyFortyEight,
+  "number-guess": NumberGuess,
   "word-scramble": WordScramble,
   rps: RockPaperScissors,
+  jwt: JwtDecoder,
+  cron: CronBuilder,
+  "http-codes": HttpStatusCodes,
+  sql: SqlFormatter,
+  "regex-golf": RegexGolf,
+  "binary-drill": BinaryDrill,
+  "big-o": BigOQuiz,
+  "css-battle": CssBattle,
   sorting: SortingVisualizer,
   pathfinding: PathfindingVisualizer,
   "game-of-life": GameOfLife,
