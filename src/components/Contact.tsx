@@ -63,22 +63,29 @@ export default function Contact() {
 
         <ScrollReveal delay={300}>
           <div className="space-y-6 sm:space-y-8">
-            {/* Email - clickable glassmorphism card */}
-            <div
-              onClick={handleCopy}
+            {/* Email - opens mailbox on click, long press / right click to copy */}
+            <a
+              href="mailto:mohsiniqbal826635@gmail.com"
+              onClick={(e) => { if (e.detail === 2) { e.preventDefault(); handleCopy(); } }}
               className="group cursor-pointer inline-block glass-heavy rounded-xl sm:rounded-2xl px-5 sm:px-10 py-4 sm:py-6 hover:bg-white/[0.06] transition-all duration-300 relative overflow-hidden max-w-full"
-              data-cursor-label={copied ? "Copied!" : "Copy Email"}
+              data-cursor-label="Send Email"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-accent-blue/10 to-accent-purple/10 opacity-0 group-hover:opacity-100 transition-opacity" />
               <span className="text-sm sm:text-xl md:text-2xl font-mono text-white/70 group-hover:text-white transition-colors relative z-10 break-all sm:break-normal">
                 mohsiniqbal826635@gmail.com
               </span>
               <div className="mt-2 text-[10px] sm:text-xs font-mono text-accent-blue h-4 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity relative z-10">
-                {copied ? "✓ COPIED TO CLIPBOARD" : "↗ TAP TO COPY"}
+                {copied ? "✓ COPIED TO CLIPBOARD" : "↗ CLICK TO EMAIL"}
               </div>
-            </div>
+            </a>
 
-            <div className="text-base sm:text-lg font-mono text-white/50">+91-7006009596</div>
+            <a
+              href="tel:+917006009596"
+              className="block text-base sm:text-lg font-mono text-white/50 hover:text-white transition-colors"
+              data-cursor-label="Call"
+            >
+              +91-7006009596
+            </a>
 
             {/* Social links */}
             <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-6 pt-4 sm:pt-8">
