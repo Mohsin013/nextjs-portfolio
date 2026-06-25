@@ -111,9 +111,13 @@ const categories = [
 export default function Capabilities() {
   const [activeId, setActiveId] = useState<number | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isMobile, setIsMobile] = useState(false);
   const gridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const mobile = window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 768;
+    setIsMobile(mobile);
+
     const handleMouse = (e: MouseEvent) => {
       if (gridRef.current) {
         const rect = gridRef.current.getBoundingClientRect();
@@ -121,7 +125,9 @@ export default function Capabilities() {
       }
     };
     const grid = gridRef.current;
-    grid?.addEventListener("mousemove", handleMouse);
+    if (!mobile) {
+      grid?.addEventListener("mousemove", handleMouse);
+    }
     return () => grid?.removeEventListener("mousemove", handleMouse);
   }, []);
 
@@ -162,9 +168,8 @@ export default function Capabilities() {
                   ${activeId === cat.id ? "glass-heavy border-accent-blue/30 md:scale-[1.02]" : "glass hover:border-white/15"}
                   ${activeId && activeId !== cat.id ? "md:opacity-40 md:scale-[0.98]" : ""}
                 `}
-                onMouseEnter={() => setActiveId(cat.id)}
-                onMouseLeave={() => setActiveId(null)}
-                onClick={() => setActiveId(activeId === cat.id ? null : cat.id)}
+                onMouseEnter={() => !isMobile && setActiveId(cat.id)}
+                onMouseLeave={() => !isMobile && setActiveId(null)}
                 data-cursor-label={cat.title}
               >
                 {/* Background gradient on hover */}
@@ -179,7 +184,7 @@ export default function Capabilities() {
                     <p className="text-xs sm:text-sm text-white/40 group-hover:text-white/60 transition-colors">{cat.desc}</p>
                   </div>
 
-                  <div className={`space-y-1 sm:space-y-1.5 transform transition-all duration-500 ${activeId === cat.id ? "translate-y-0 opacity-100 mt-4" : "translate-y-6 opacity-0 h-0 overflow-hidden md:h-auto"}`}>
+                  <div className={`space-y-1 sm:space-y-1.5 transform transition-all duration-500 ${isMobile || activeId === cat.id ? "translate-y-0 opacity-100 mt-4" : "translate-y-6 opacity-0 h-0 overflow-hidden md:h-auto"}`}>
                     <div className="h-[1px] w-full bg-gradient-to-r from-accent-blue/50 to-transparent mb-2 sm:mb-3" />
                     {cat.examples.slice(0, 5).map((ex, i) => (
                       <div key={i} className="flex items-center gap-2 text-[10px] sm:text-[11px] font-mono text-accent-blue/80">
