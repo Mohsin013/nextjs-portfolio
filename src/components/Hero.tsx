@@ -183,9 +183,9 @@ export default function Hero() {
 
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/profile.jpg"
+              src="/new_profile_photo.png"
               alt="Mohsin Iqbal"
-              className="w-full h-full object-cover filter grayscale contrast-[1.1] brightness-[0.9] group-hover:grayscale-0 group-hover:contrast-100 group-hover:brightness-100 transition-all duration-700 ease-out"
+              className="w-full h-full object-cover transition-all duration-700 ease-out"
             />
 
             {/* Scanline effect */}
